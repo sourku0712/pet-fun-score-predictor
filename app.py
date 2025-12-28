@@ -24,7 +24,6 @@ app = FastAPI()
 
 @app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
-    print("Health check hit")
     return {"status": "ok"}
 
 @app.post("/analyze")
