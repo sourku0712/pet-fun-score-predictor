@@ -96,6 +96,11 @@ function renderLeaderboard(entries) {
   });
 }
 
+const BACKEND_URL =
+  window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8000"
+    : "https://pet-fun-score-predictor.onrender.com";
+
 async function uploadImage() {
   const fileInput = document.getElementById("imageInput");
   const output = document.getElementById("output");
@@ -110,7 +115,7 @@ async function uploadImage() {
 
   output.innerHTML = "⏳ Analyzing...";
 
-  const response = await fetch("http://127.0.0.1:8000/analyze", {
+  const response = await fetch(`${BACKEND_URL}/analyze`, {
     method: "POST",
     body: formData
   });
