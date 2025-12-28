@@ -2,7 +2,7 @@
 
 
 
-###### A web-based AI application that analyzes animal images to estimate **playfulness / fun score**, visualize results with **emojis, leaderboards**, and an **annotated image highlighting the most playful animal** — all **without training a custom model**.
+A web-based AI application that analyzes animal images to estimate **playfulness / fun score**, visualize results with **emojis, leaderboards**, and an **annotated image highlighting the most playful animal** — all **without training a custom model**.
 
 
 
@@ -12,35 +12,35 @@
 
 
 
-###### 📸 Upload an image of pets/animals
+📸 Upload an image of pets/animals
 
-###### 
 
-###### 🧠 Uses a pretrained vision-language AI model (Gemini)
 
-###### 
+🧠 Uses a pretrained vision-language AI model (Gemini)
 
-###### 🐶 Detects animals and infers:
 
-* ###### Mood
-* ###### Posture
-* ###### Playfulness, energy, and cuteness
 
-###### 
+🐶 Detects animals and infers:
 
-###### 🎯 Computes a Fun Score (0–100) using rule-based logic
+* Mood
+* Posture
+* Playfulness, energy, and cuteness
 
-###### 
 
-###### 😄 Displays mood-based emojis
 
-###### 
+🎯 Computes a Fun Score (0–100) using rule-based logic
 
-###### 🏆 Maintains a live leaderboard
 
-###### 
 
-###### 🌐 Clean, responsive frontend UI
+😄 Displays mood-based emojis
+
+
+
+🏆 Maintains a live leaderboard
+
+
+
+🌐 Clean, responsive frontend UI
 
 
 
@@ -54,10 +54,10 @@
 
 
 
-* ###### Python
-* ###### FastAPI
-* ###### Google Gemini Vision API
-* ###### python-multipart – image upload handling
+* Python
+* FastAPI
+* Google Gemini Vision API
+* python-multipart – image upload handling
 
 
 
@@ -65,8 +65,8 @@
 
 
 
-* ###### HTML
-* ###### Google Fonts (Poppins)
+* HTML
+* Google Fonts (Poppins)
 
 
 
@@ -76,29 +76,29 @@
 
 
 
-###### Pet Fun Score Predictor/
+Pet Fun Score Predictor/
 
-###### │
+│
 
-###### ├── ai.py                 # AI vision inference
+├── ai.py                 # AI vision inference
 
-###### ├── main.py               # Fun score logic
+├── main.py               # Fun score logic
 
-###### ├── app.py                # FastAPI backend
+├── app.py                # FastAPI backend
 
-###### ├── uploads/              # Uploaded images
+├── uploads/              # Uploaded images
 
-###### │
+│
 
-###### ├── frontend/
+├── frontend/
 
-###### │   └── index.html        # Web UI
+│   └── index.html        # Web UI
 
-###### │
+│
 
-###### ├── README.md
+├── README.md
 
-###### └── requirements.txt
+└── requirements.txt
 
 
 
@@ -112,9 +112,9 @@
 
 
 
-###### git clone https://github.com/sourku0712/pet-fun-score-predictor.git
+git clone https://github.com/sourku0712/pet-fun-score-predictor.git
 
-###### cd pet-fun-score-predictor
+cd pet-fun-score-predictor
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-###### pip install -r requirements.txt
+pip install -r requirements.txt
 
 
 
@@ -130,9 +130,9 @@
 
 
 
-###### In ai.py:
+In ai.py:
 
-###### GEM\_API\_KEY = "YOUR\_GEMINI\_API\_KEY"
+GEM\_API\_KEY = "YOUR\_GEMINI\_API\_KEY"
 
 
 
@@ -144,13 +144,13 @@
 
 
 
-###### &nbsp;	uvicorn app:app --reload
+ 	uvicorn app:app --reload
 
 
 
-###### &nbsp;	Backend runs at:
+ 	Backend runs at:
 
-###### &nbsp;	http://127.0.0.1:8000
+ 	http://127.0.0.1:8000
 
 
 
@@ -158,27 +158,27 @@
 
 
 
-##### &nbsp;   Option 1 (Simple):
+#####     Option 1 (Simple):
 
 
 
-###### &nbsp;	Open frontend/index.html directly in browser
+ 	Open frontend/index.html directly in browser
 
 
 
-##### &nbsp;   Option 2 (Recommended):
+#####     Option 2 (Recommended):
 
 
 
-###### &nbsp;	cd frontend
+ 	cd frontend
 
-###### &nbsp;	python -m http.server 5500
+ 	python -m http.server 5500
 
-###### 
 
-###### &nbsp;	Open:
 
-###### &nbsp;	   http://localhost:5500
+ 	Open:
+
+ 	   http://localhost:5500
 
 
 
@@ -188,15 +188,15 @@
 
 
 
-* ###### User uploads an image
-* ###### Image is sent to FastAPI backend
-* ###### AI model analyzes the image and returns structured attributes
-* ###### A rule-based engine computes fun scores
-* ###### Backend:
-* ###### Updates leaderboard
-* ###### Frontend displays:
-* ###### Scores + emojis
-* ###### Leaderboard
+* User uploads an image
+* Image is sent to FastAPI backend
+* AI model analyzes the image and returns structured attributes
+* A rule-based engine computes fun scores
+* Backend:
+* Updates leaderboard
+* Frontend displays:
+* Scores + emojis
+* Leaderboard
 
 
 
@@ -206,9 +206,9 @@
 
 
 
-* ###### Each uploaded image is scored
-* ###### Leaderboard ranks images by highest fun score
-* ###### Top entries are displayed live on the UI
+* Each uploaded image is scored
+* Leaderboard ranks images by highest fun score
+* Top entries are displayed live on the UI
 
 
 
@@ -218,21 +218,8 @@
 
 
 
-* ###### True object detection bounding boxes
-* ###### Persistent leaderboard (database)
-* ###### User authentication
-* ###### Mobile-friendly UI
-* ###### Download annotated image button
-
-
-
-
-
-
-
-
-
-
-
-
-
+* True object detection bounding boxes
+* Persistent leaderboard (database)
+* User authentication
+* Mobile-friendly UI
+* Download annotated image button
