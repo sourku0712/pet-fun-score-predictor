@@ -18,8 +18,11 @@ UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 leaderboard = []
+from fastapi import FastAPI
 
-@app.get("/health")
+app = FastAPI()
+
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
     print("Health check hit")
     return {"status": "ok"}
