@@ -19,6 +19,11 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 leaderboard = []
 
+@app.get("/health")
+def health_check():
+    print("Health check hit")
+    return {"status": "ok"}
+
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
     image_path = f"{UPLOAD_DIR}/{file.filename}"
