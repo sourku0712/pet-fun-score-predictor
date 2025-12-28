@@ -1,6 +1,6 @@
 ## 🐾 Pet Fun Score Predictor
 
-
+🔗 **Live Demo:** https://sourku0712.github.io/pet-fun-score-predictor/
 
 A web-based AI application that analyzes animal images to estimate **playfulness / fun score**, visualize results with **emojis, leaderboards**, and an **annotated image highlighting the most playful animal** — all **without training a custom model**.
 
