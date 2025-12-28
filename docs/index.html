@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🐾 Pet Fun Score Predictor</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.card {
+  background: rgba(255,255,255,0.12);
+  padding: 30px;
+  border-radius: 20px;
+  width: 420px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+h1 { font-weight: 600; }
+input { margin: 20px 0; }
+button {
+  background: #00ffd5;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+button:hover { background: #00e6c2; }
+.result { margin-top: 20px; text-align: left; }
+.score {
+  background: rgba(0,0,0,0.2);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.leaderboard-item {
+  background: rgba(255,215,0,0.2);
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.rank { font-weight: 600; }
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>🐶 Pet Fun Score</h1>
+  <p>Upload an animal image to analyze playfulness</p>
+
+  <input type="file" id="imageInput">
+  <br>
+  <button onclick="uploadImage()">Analyze</button>
+
+  <div id="output" class="result"></div>
+
+  <h3 style="margin-top:25px;">🏆 Leaderboard</h3>
+  <div id="leaderboard" class="result"></div>
+</div>
+
+<script>
+function moodToEmoji(mood) {
+  const map = {
+    happy: "😄",
+    playful: "😜",
+    calm: "😌",
+    sleepy: "😴",
+    alert: "👀",
+    aggressive: "😡"
+  };
+  return map[mood] || "🐾";
+}
+
+function renderLeaderboard(entries) {
+  const board = document.getElementById("leaderboard");
+  board.innerHTML = "";
+
+  entries.forEach((item, index) => {
+    const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "🐾";
+
+    board.innerHTML += `
+      <div class="leaderboard-item">
+        <span class="rank">${medal} ${index + 1}.</span>
+        ${item.image}<br>
+        🎉 Fun Score: <b>${item.score}</b>
+      </div>
+    `;
+  });
+}
+
+const BACKEND_URL =
+  window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8000"
+    : "https://pet-fun-score-predictor.onrender.com";
+
+async function uploadImage() {
+  const fileInput = document.getElementById("imageInput");
+  const output = document.getElementById("output");
+
+  if (!fileInput.files.length) {
+    alert("Please upload an image");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+
+  output.innerHTML = "⏳ Analyzing...";
+
+  const response = await fetch(`${BACKEND_URL}/analyze`, {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await response.json();
+
+  output.innerHTML = `<p>🐾 Total Animals: ${data.total_animals}</p>`;
+
+  data.results.forEach(a => {
+    const emoji = moodToEmoji(a.mood);
+    output.innerHTML += `
+      <div class="score">
+        <strong>${emoji} ${a.animal_type}</strong><br>
+        Mood: ${a.mood}<br>
+        Posture: ${a.posture}<br>
+        🎉 Fun Score: <b>${a.fun_score}</b>
+      </div>
+    `;
+  });
+
+  renderLeaderboard(data.leaderboard);
+}
+</script>
+</body>
+</html>
