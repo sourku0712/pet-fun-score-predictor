@@ -5,10 +5,8 @@ import shutil, json, os
 from ai import feature
 from main import compute_fun_score
 
-# ✅ Create app ONCE
 app = FastAPI()
 
-# ✅ Add CORS to the SAME app
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,12 +20,12 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 leaderboard = []
 
-# ✅ Health check (for UptimeRobot)
+# Health check (for UptimeRobot)
 @app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
     return {"status": "ok"}
 
-# ✅ Analyze endpoint
+# Analyze endpoint
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
     image_path = f"{UPLOAD_DIR}/{file.filename}"
