@@ -5,12 +5,15 @@ import shutil, json, os
 from ai import feature
 from main import compute_fun_score
 
+# ✅ Create app ONCE
 app = FastAPI()
 
+# ✅ Add CORS to the SAME app
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS", "HEAD"],
     allow_headers=["*"],
 )
 
@@ -18,14 +21,13 @@ UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 leaderboard = []
-from fastapi import FastAPI
 
-app = FastAPI()
-
+# ✅ Health check (for UptimeRobot)
 @app.api_route("/health", methods=["GET", "HEAD"])
 def health_check():
     return {"status": "ok"}
 
+# ✅ Analyze endpoint
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
     image_path = f"{UPLOAD_DIR}/{file.filename}"
@@ -39,12 +41,14 @@ async def analyze_image(file: UploadFile = File(...)):
     interaction = data["interaction"]
 
     results = []
-    scores= []
+    scores = []
     image_score = 0
+
     for animal in data["animals"]:
         score = compute_fun_score(animal, total_animals, interaction)
         scores.append(score)
         image_score = max(image_score, score)
+
         results.append({
             "animal_type": animal["animal_type"],
             "mood": animal["mood"],
@@ -52,7 +56,6 @@ async def analyze_image(file: UploadFile = File(...)):
             "fun_score": score
         })
 
-    # Update leaderboard
     leaderboard.append({
         "image": file.filename,
         "score": image_score
@@ -62,5 +65,5 @@ async def analyze_image(file: UploadFile = File(...)):
     return {
         "total_animals": total_animals,
         "results": results,
-        "leaderboard": leaderboard[:5],  # top 5
+        "leaderboard": leaderboard[:5]
     }
