@@ -75,31 +75,20 @@ A web-based AI application that analyzes animal images to estimate **playfulness
 ### 📂 Project Structure
 
 
-
+<pre><code>
 Pet Fun Score Predictor/
-
 │
-
 ├── ai.py                 # AI vision inference
-
 ├── main.py               # Fun score logic
-
 ├── app.py                # FastAPI backend
-
 ├── uploads/              # Uploaded images
-
 │
-
 ├── frontend/
-
 │   └── index.html        # Web UI
-
 │
-
 ├── README.md
-
 └── requirements.txt
-
+</code></pre>
 
 
 
@@ -111,28 +100,27 @@ Pet Fun Score Predictor/
 #### 1️⃣ Clone the Repository
 
 
-
+<pre><code>
 git clone https://github.com/sourku0712/pet-fun-score-predictor.git
-
 cd pet-fun-score-predictor
-
+</code></pre>
 
 
 #### 2️⃣ Install Dependencies
 
 
-
+<pre><code>
 pip install -r requirements.txt
-
+</code></pre>
 
 
 #### 3️⃣ Set API Key
 
 
 
-In ai.py:
+<div>In ai.py:</div>
 
-GEM\_API\_KEY = "YOUR\_GEMINI\_API\_KEY"
+<div>GEM_API_KEY = "YOUR_GEMINI_API_KEY"</div>
 
 
 
@@ -144,13 +132,11 @@ GEM\_API\_KEY = "YOUR\_GEMINI\_API\_KEY"
 
 
 
- 	uvicorn app:app --reload
+<pre><code> 	uvicorn app:app --reload </code></pre>
 
 
 
- 	Backend runs at:
-
- 	http://127.0.0.1:8000
+*	Backend runs at:  http://127.0.0.1:8000
 
 
 
@@ -162,23 +148,20 @@ GEM\_API\_KEY = "YOUR\_GEMINI\_API\_KEY"
 
 
 
- 	Open frontend/index.html directly in browser
+* Open frontend/index.html directly in browser
 
 
 
 #####     Option 2 (Recommended):
 
 
-
+<pre><code>
  	cd frontend
-
  	python -m http.server 5500
+</code></pre>
 
 
-
- 	Open:
-
- 	   http://localhost:5500
+* Open: http://localhost:5500
 
 
 
