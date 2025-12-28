@@ -96,10 +96,14 @@ function renderLeaderboard(entries) {
   });
 }
 
-const BACKEND_URL =
-  window.location.hostname === "localhost"
-    ? "http://127.0.0.1:8000"
-    : "https://pet-fun-score-predictor.onrender.com";
+const isLocal =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1" ||
+  window.location.hostname === "";
+
+const BACKEND_URL = isLocal
+  ? "http://127.0.0.1:8000"
+  : "https://pet-fun-score-predictor.onrender.com";
 
 async function uploadImage() {
   const fileInput = document.getElementById("imageInput");
