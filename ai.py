@@ -1,15 +1,14 @@
 from google import genai
 from google.genai import types
+import os
 
-# GEM_API_KEY = "AIzaSyBHCUty1kcAfQ9zk37lzo2dgUZIdc1JzrA"
-GEM_API_KEY = "AIzaSyBmG6pKvp8zdKxA2WqfUXTQFiUfaotNvlg"
+GEM_API_KEY = os.getenv("GEM_API_KEY")
 
 def feature(image):
   with open(image, 'rb') as f:
       image_bytes = f.read()
   client = genai.Client(api_key=GEM_API_KEY)
   response = client.models.generate_content(
-    # model='gemini-2.5-flash',
     model='gemini-3-flash-preview',
     contents=[
       types.Part.from_bytes(
